@@ -9,21 +9,21 @@ import java.util.Optional;
 
 @Service
 public class DrinkService {
-    private final DrinkRepository repository;
+    private final DrinkRepository drinkRepository;
 
     public DrinkService(DrinkRepository repository) {
-        this.repository = repository;
+        this.drinkRepository = repository;
     }
 
     public List<Drink> getAll() {
-        return repository.findAll();
+        return drinkRepository.findAll();
     }
 
     public Optional<Drink> getById(Long id) {
-        return repository.findById(id);
+        return drinkRepository.findById(id);
     }
 
-    public Drink create(Drink drink) {
-        return repository.save(drink);
+    public Drink save(Drink drink) {
+        return drinkRepository.save(drink);
     }
 }
