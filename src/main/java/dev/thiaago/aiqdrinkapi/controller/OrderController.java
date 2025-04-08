@@ -1,7 +1,7 @@
 package dev.thiaago.aiqdrinkapi.controller;
 
 import dev.thiaago.aiqdrinkapi.dto.CreateOrderDTO;
-import dev.thiaago.aiqdrinkapi.model.Order;
+import dev.thiaago.aiqdrinkapi.dto.OrderDTO;
 import dev.thiaago.aiqdrinkapi.service.OrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +18,13 @@ public class OrderController {
     }
 
     @GetMapping
-    public List<Order> getAll() {
+    public List<OrderDTO> getAll() {
         return orderService.getAll();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Order create(@RequestBody CreateOrderDTO order) {
+    public OrderDTO create(@RequestBody CreateOrderDTO order) {
         return orderService.save(order);
     }
 
