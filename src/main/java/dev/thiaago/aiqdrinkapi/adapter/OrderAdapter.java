@@ -23,18 +23,6 @@ public class OrderAdapter {
         );
     }
 
-    public Order toOrder(OrderDTO orderDTO) {
-        return new Order(
-                orderDTO.customerName(),
-                new Drink(
-                        orderDTO.drink().name(),
-                        orderDTO.drink().description(),
-                        orderDTO.drink().recipe(),
-                        orderDTO.drink().photoUrl()
-                )
-        );
-    }
-
     public Order toOrder(CreateOrderDTO orderDTO, Drink drink) {
         return new Order(
                 orderDTO.customerName(),

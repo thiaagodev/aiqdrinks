@@ -1,12 +1,13 @@
 package dev.thiaago.aiqdrinkapi.controller;
 
-import dev.thiaago.aiqdrinkapi.model.Drink;
+import dev.thiaago.aiqdrinkapi.dto.CreateDrinkDTO;
+import dev.thiaago.aiqdrinkapi.dto.DrinkDTO;
 import dev.thiaago.aiqdrinkapi.service.DrinkService;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/drinks")
@@ -18,18 +19,18 @@ public class DrinkController {
     }
 
     @GetMapping
-    public List<Drink> getAll() {
+    public List<DrinkDTO> getAll() {
         return drinkService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Drink> getById(@PathVariable("id") String id) {
+    public DrinkDTO getById(@PathVariable("id") String id) throws ChangeSetPersister.NotFoundException {
         return drinkService.getById(Long.getLong(id));
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Drink create(@RequestBody Drink drink) {
+    public DrinkDTO create(@RequestBody CreateDrinkDTO drink) {
         return drinkService.save(drink);
     }
 }
